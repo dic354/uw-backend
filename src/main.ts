@@ -7,11 +7,23 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.enableCors({
-    origin: [
-      'http://localhost:4200',
-      'https://urbanwearshop.vercel.app', 
-      process.env.FRONTEND_URL,
-    ].filter(Boolean) as string[],
+    origin: (origin, callback) => {
+      const allowed = [
+        'http://localhost:4200',
+        'https://urbanwearshop.vercel.app',
+        process.env.FRONTEND_URL,
+      ].filter(Boolean);
+
+      // Permite requests sin origin (Postman, mobile, SSR)
+      if (!origin) return callback(null, true);
+
+      if (allowed.includes(origin)) {
+        callback(null, true);
+      } else {
+        console.error(`CORS bloqueado para origin: ${origin}`);
+        callback(new Error(`Origin no permitido: ${origin}`));
+      }
+    },
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     allowedHeaders: 'Content-Type, Accept, Authorization',
     credentials: true,
