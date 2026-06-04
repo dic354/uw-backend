@@ -10,7 +10,7 @@ async function bootstrap() {
     origin: (origin, callback) => {
       const allowed = [
         'http://localhost:4200',
-        'https://urbanwearshop.vercel.app/',
+        'https://uw-frontend.vercel.app/',
         process.env.FRONTEND_URL,
       ].filter(Boolean);
 
