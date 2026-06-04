@@ -9,8 +9,11 @@ async function bootstrap() {
   app.enableCors({
     origin: [
       'http://localhost:4200',
-      process.env.FRONTEND_URL, // 👈 añade tu frontend de producción
-    ].filter(Boolean),
+      'https://urbanwearshop.vercel.app', 
+      process.env.FRONTEND_URL,
+    ].filter(Boolean) as string[],
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    allowedHeaders: 'Content-Type, Accept, Authorization',
     credentials: true,
   });
 
@@ -42,7 +45,6 @@ async function bootstrap() {
     },
   });
 
-  // ✅ Usa PORT de Render, escucha en 0.0.0.0
   const port = process.env.PORT || 3000;
   await app.listen(port, '0.0.0.0');
 
