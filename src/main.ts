@@ -6,21 +6,26 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // Validación global
+  app.enableCors({
+    origin: 'http://localhost:4200',
+    credentials: true,
+  });
+
+  // Validaci贸n global
   app.useGlobalPipes(new ValidationPipe({
     whitelist: true,
     forbidNonWhitelisted: true,
     transform: true,
   }));
 
-  // Configuración de Swagger
+  // Configuraci贸n de Swagger
   const config = new DocumentBuilder()
     .setTitle('UrbanWear API')
     .setDescription('API REST para la tienda online de moda urbana UrbanWear')
     .setVersion('1.0')
     .addBearerAuth(
       {
-        // Configuración del token JWT en Swagger
+        // Configuraci贸n del token JWT en Swagger
         type: 'http',
         scheme: 'bearer',
         bearerFormat: 'JWT',
@@ -40,6 +45,6 @@ async function bootstrap() {
   await app.listen(3000);
 
   console.log('Servidor corriendo en: http://localhost:3000');
-  console.log('Documentación Swagger: http://localhost:3000/api');
+  console.log('Documentaci贸n Swagger: http://localhost:3000/api');
 }
 bootstrap();
