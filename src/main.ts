@@ -14,37 +14,35 @@ async function bootstrap() {
   // Validación global
   app.useGlobalPipes(new ValidationPipe({
     whitelist: true,
-    forbidNonWhitelisted: true,
     transform: true,
   }));
 
-  // Configuración de Swagger
   const config = new DocumentBuilder()
     .setTitle('UrbanWear API')
     .setDescription('API REST para la tienda online de moda urbana UrbanWear')
     .setVersion('1.0')
     .addBearerAuth(
       {
-        // Configuración del token JWT en Swagger
         type: 'http',
         scheme: 'bearer',
         bearerFormat: 'JWT',
         description: 'Introduce el token JWT obtenido en /auth/login',
       },
-      'JWT', // Nombre del esquema de seguridad
+      'JWT',
     )
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document, {
     swaggerOptions: {
-      persistAuthorization: true, // Mantiene el token al recargar
+      persistAuthorization: true,
     },
   });
 
-  await app.listen(3000);
+  const port = process.env.PORT || 3000;
+  await app.listen(port, '0.0.0.0');
 
-  console.log('Servidor corriendo en: http://localhost:3000');
-  console.log('Documentación Swagger: http://localhost:3000/api');
+  console.log(`Servidor corriendo en el puerto: ${port}`);
+  console.log(`Documentación Swagger: http://localhost:${port}/api`);
 }
 bootstrap();
