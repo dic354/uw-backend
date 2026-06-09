@@ -5,7 +5,7 @@ API REST completa para la plataforma de comercio electrónico UrbanWear, una tie
 ## 🔗 Enlaces del Proyecto
 
 * **Repositorio del Backend:** [GitHub - UW-backend](https://github.com/dic354/UW-backend)
-* **Despliegue de la Aplicación:** [UrbanWear en Vercel](https://uw-frontend.vercel.app/)
+* **Despliegue de la Aplicación:** [UrbanWear](https://uw-frontend.vercel.app/)
 ---
 
 ## Índice
