@@ -2,8 +2,10 @@
 
 API REST completa para la plataforma de comercio electrónico UrbanWear, una tienda online de moda urbana. Desarrollada con NestJS, Prisma ORM y MySQL.
 
-**Repositorio:** `https://github.com/dic354/UW-backend`
-**URL:** `https://uw-frontend.vercel.app/`
+## 🔗 Enlaces del Proyecto
+
+* **Repositorio del Backend:** [GitHub - UW-backend](https://github.com/dic354/UW-backend)
+* **Despliegue de la Aplicación:** [UrbanWear en Vercel](https://uw-frontend.vercel.app/)
 ---
 
 ## Índice
